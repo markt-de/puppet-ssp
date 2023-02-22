@@ -1,0 +1,23 @@
+<?php
+// This file is managed by Puppet. DO NOT EDIT.
+
+// Override config.inc.php parameters below
+// The config search for string and nested hash values 
+
+<% $ssp::config.each |$key,$value| { -%>
+    <%- if $value =~ String { -%>
+$<%= $key %> = '<%= $value %>'; 
+    <%- } elsif $value =~ Hash { -%>   
+        <%- $value.each |$sub_key,$sub_value| { -%>
+            <%- if $sub_value =~String { -%> 
+$<%= $key %>['<%= $sub_key %>'] = "<%= $sub_value %>; 
+            <%- } else { -%>    
+$<%= $key %>['<%= $sub_key %>'] = <%= $sub_value %>; 
+            <%- } -%>      
+        <%- } -%> 
+    <%- } else {-%>
+$<%= $key %> = <%= $value %>;
+    <%- } -%>
+<%- } -%>
+
+?>
