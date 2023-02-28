@@ -125,7 +125,7 @@ Specifies the version of SSP that should be installed.
 
 Data type: `Optional[String]`
 
-
+Optional, if the smarty have to be in an other path than default.
 
 Default value: `undef`
 
