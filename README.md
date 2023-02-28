@@ -1,117 +1,132 @@
-# ssp
-
-Welcome to your new module. A short overview of the generated parts can be found
-in the [PDK documentation][1].
-
-The README template below provides a starting point with details about what
-information to include in your README.
+# puppet-ssp
 
 ## Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with ssp](#setup)
-    * [What ssp affects](#what-ssp-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with ssp](#beginning-with-ssp)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+2. [Requirements](#requirements)
+3. [Usage](#usage)
+    - [Basic usage](#basic-usage)
+    - [Configure Self Service Password](#configure-self-service-password)
+    - [Directory structure](#directory-structure)
+4. [Reference](#reference)
+5. [Documentation](#documentation)
+6. [Development](#development)
+    - [Contributing](#contributing)
+7. [License](#license)
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your
-module does and what kind of problems users can solve with it.
+This is a puppet module to install and manage [Self Service Password](https://ltb-project.org/documentation/self-service-password.html).
+It is flexible to change and enable default Self Service Password functions for your location.
 
-This should be a fairly short description helps the user decide if your module
-is what they want.
 
-## Setup
+## Requirements
 
-### What ssp affects **OPTIONAL**
+This module should work with all officially supported versions of Nextcloud.
+The focus of this module is Self Service Password, so you should ensure that all additional components are available and ready to use:
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+   * A webservice like Nginx or Apache [puppetlabs/apache](https://github.com/puppetlabs/puppetlabs-apache) is recommended.
+   * A supported version of PHP (PHP-FPM is strongly recommended). The module is capable of providing a default installation of PHP, if the optional soft dependency        [puppet/php](https://github.com/voxpupuli/puppet-php) is available.
 
-If there's more that they should know about, though, this is the place to
-mention:
-
-* Files, packages, services, or operations that the module will alter, impact,
-  or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section here.
-
-### Beginning with ssp
-
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most basic
-use of the module.
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your
-users how to use your module to solve problems, and be sure to include code
-examples. Include three to five examples of the most important or common tasks a
-user can accomplish with your module. Show users how to accomplish more complex
-tasks that involve different types, classes, and functions working in tandem.
+### Basic usage
 
-## Reference
+One parameter is required to setup Self Service Password:
 
-This section is deprecated. Instead, add reference information to your code as
-Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your
-module. For details on how to add code comments and generate documentation with
-Strings, see the [Puppet Strings documentation][2] and [style guide][3].
 
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the
-root of your module directory and list out each of your module's classes,
-defined types, facts, functions, Puppet tasks, task plans, and resource types
-and providers, along with the parameters for each.
+```puppet
+class { 'ssp':
+   version => '1.5.2'
+}
+```
 
-For each element (class, defined type, function, and so on), list:
+If you want to change the default folder path of smarty, you have to change the one parameter in init.pp
 
-* The data type, if applicable.
-* A description of what the element does.
-* Valid values, if the data type doesn't make it obvious.
-* Default value, if any.
+```puppet
+class { 'ssp':
+   smarty_path => '/usr/share/php/Smarty/Smarty.class.php'
+}
+```
+
+The folder of the Self Service Password installation is derived from two parameters: `$installroot` and `$symlink_name`. Using different folders is simple:
+
+```puppet
+class { 'ssp':
+  installroot  => '/opt',
+  symlink_name => 'ssp',
+}
+```
+
+In this example the Self Service Password installation will live in `/opt/self-service-password`, and this folder should be used as DocumentRoot for the webservice (and/or PHP-FPM). 
+
+### Configure Self Service Password 
+
+Please note, never change the default config.inc.php. It is not recommended. 
+All entries in config can be changed in Self Service Password.
 
 For example:
 
+```puppet
+class { 'ssp':
+...
+  config         => {
+    ldap_url       => 'ldap://localhost',
+    ldap_binddn    => 'cn=binduser',
+    ldap_base      => 'dc=exaple,dc=com',
+    pwd_min_length => 20,
+    shadow_options => {
+      update_shadowLastChange => true,
+      shadow_expire_days      => -1,
+    },
+  },
+}
 ```
-### `pet::cat`
 
-#### Parameters
+### Directory structure
 
-##### `meow`
+When using the module with default options... 
 
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
+```puppet
+class { 'ssp':
+  installroot  => '/opt',
+  symlink_name => 'ssp',
+  version      => '1.5.2',
+}
 ```
 
-## Limitations
+...the directory structure will look like this:
 
-In the Limitations section, list any incompatibilities, known issues, or other
-warnings.
+
+```
+/
+|-- opt/
+|   |-- ssp@                                  # symlink to the current install dir (ssp-1.5.2)
+|   |-- self-service-password                 # default install dir 
+|   |-- self-service-password-1.5.2           # install dir for the current version
+|   |   |-- conf/                             # default configuration folder
+|   |       |-- config.inc.php                # default configuration for SSP (do not change, recommended)
+|   |       |-- config.inc.local.php          # local config file to change settings in/for config.inc.php 
+```
+
+## Reference
+
+Classes and parameters are documented in [REFERENCE.md](REFERENCE.md).
+
+
+## Documentation
+
+You can read more settings in the [Self Service Password Documentation](https://self-service-password.readthedocs.io/_/downloads/en/latest/pdf/)
+
 
 ## Development
 
-In the Development section, tell other users the ground rules for contributing
-to your project and how they should submit their work.
+### Contributing
 
-## Release Notes/Contributors/Etc. **Optional**
+Please use the GitHub issues functionality to report any bugs or requests for new features. Feel free to fork and submit pull requests for potential contributions.
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel are
-necessary or important to include here. Please use the `##` header.
 
-[1]: https://puppet.com/docs/pdk/latest/pdk_generating_modules.html
-[2]: https://puppet.com/docs/puppet/latest/puppet_strings.html
-[3]: https://puppet.com/docs/puppet/latest/puppet_strings_style.html
+## License
+
+Copyright 2023 Daniel Renz
