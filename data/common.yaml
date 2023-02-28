@@ -1,7 +1,7 @@
 ---
 ssp::config: {}
 
-ssp::config_file: "%{lookup('ssp::installroot')}/self-service-password-%{lookup('ssp::version')}/conf/config.inc.local.php"
+ssp::config_file: 'conf/config.inc.local.php'
 ssp::config_manage: true
 ssp::config_mode: "0600"
 ssp::config_template: "ssp/config.inc.local.epp"
@@ -10,7 +10,7 @@ ssp::edition: 'oss'
 ssp::group: 'apache'
 ssp::installroot: '/opt'
 ssp::manage_symlink: true
-ssp::mirror: "https://github.com/ltb-project/self-service-password/archive/refs/tags/v%{lookup('ssp::version')}.tar.gz"
+ssp::mirror: 'https://github.com/ltb-project/self-service-password/archive/refs/tags/v%s.tar.gz'
 ssp::symlink_name: 'ssp'
 ssp::user: 'apache'
 ssp::version: ~
