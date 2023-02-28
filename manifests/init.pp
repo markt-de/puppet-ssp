@@ -43,8 +43,8 @@
 #   Specifies the version of SSP that should be installed.
 # 
 # @param smarty_path
-#     
-# 
+#   Optional, if the smarty have to be in an other path than default.     
+#   
 #
 class ssp (
   Hash $config,
