@@ -1,8 +1,6 @@
 <?php
 // This file is managed by Puppet. DO NOT EDIT.
-
 // Override config.inc.php parameters below
-// The config search for string and nested hash values 
 
 <% $ssp::config.each |$key,$value| { -%>
     <%- if $value =~ String { -%>
@@ -19,5 +17,8 @@ $<%= $key %>['<%= $sub_key %>'] = <%= $sub_value %>;
 $<%= $key %> = <%= $value %>;
     <%- } -%>
 <%- } -%>
+<% if $ssp::smarty_path != undef {-%>
+define('SMARTY', "<%= $ssp::smarty_path %>" )
+<%-  } -%>
 
 ?>

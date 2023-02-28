@@ -1,15 +1,5 @@
-# A description of what this class does
-#
-#  Config file for SSP config file
-#
-#  This code can be enable/disabled if you want.
-#
-#  - Mode (Permission of Folder and Files)
-#  - template is written in EPP
-#  - service will be reloaded with notify 
-#  - config File be installed, if there are exsisting packages 
-#
-#   include ssp::config
+# @summary Configuration of Self Service Password
+# 
 class ssp::config {
   if $ssp::config_manage {
     file { $ssp::config_file:
@@ -18,8 +8,6 @@ class ssp::config {
       content => epp($ssp::config_template),
       owner   => $ssp::user,
       group   => $ssp::group,
-#     notify  => Class['ssp::service'],
-#     require => Class['ssp::package'],
     }
   }
 }

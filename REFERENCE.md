@@ -9,7 +9,7 @@
 #### Public Classes
 
 * [`ssp`](#ssp): Setup LDAP Account Manager (SSP)
-* [`ssp::config`](#ssp--config): A description of what this class does   Config file for SSP config file   This code can be enable/disabled if you want.   - Mode (Permission 
+* [`ssp::config`](#ssp--config): Configuration of Self Service Password
 
 #### Private Classes
 
@@ -38,6 +38,7 @@ The following parameters are available in the `ssp` class:
 * [`mirror`](#-ssp--mirror)
 * [`user`](#-ssp--user)
 * [`version`](#-ssp--version)
+* [`smarty_path`](#-ssp--smarty_path)
 
 ##### <a name="-ssp--config"></a>`config`
 
@@ -120,18 +121,15 @@ Data type: `String`
 
 Specifies the version of SSP that should be installed.
 
+##### <a name="-ssp--smarty_path"></a>`smarty_path`
+
+Data type: `Optional[String]`
+
+
+
+Default value: `undef`
+
 ### <a name="ssp--config"></a>`ssp::config`
 
-A description of what this class does
-
- Config file for SSP config file
-
- This code can be enable/disabled if you want.
-
- - Mode (Permission of Folder and Files)
- - template is written in EPP
- - service will be reloaded with notify
- - config File be installed, if there are exsisting packages
-
-  include ssp::config
+Configuration of Self Service Password
 

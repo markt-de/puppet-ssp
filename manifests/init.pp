@@ -42,7 +42,10 @@
 # @param version
 #   Specifies the version of SSP that should be installed.
 # 
+# @param smarty_path
+#     
 # 
+#
 class ssp (
   Hash $config,
   String $config_file,
@@ -57,6 +60,7 @@ class ssp (
   String $symlink_name,
   String $user,
   String $version,
+  Optional[String] $smarty_path = undef,
 ) {
   class { 'ssp::install': }
   -> class { 'ssp::config': }
