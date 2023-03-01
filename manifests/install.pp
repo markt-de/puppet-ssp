@@ -6,7 +6,7 @@ class ssp::install {
   include 'archive'
 
   $archive_name = "self-service-password-${ssp::version}.tar.gz"
-  $download_url = $ssp::mirror
+  $download_url = sprintf($ssp::mirror, $ssp::version)
   $install_dir = "${ssp::installroot}/self-service-password-${ssp::version}"
 
   # Archive unzip
