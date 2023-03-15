@@ -18,6 +18,13 @@ class ssp::install {
     cleanup      => false,
   }
 
+  # install PHP Smarty from local repo
+  if ($ssp::manage_smarty) {
+    package { $ssp::smarty_package_name:
+      ensure => installed,
+    }
+  }
+
   # Create a symlink to the current version
   if ($ssp::manage_symlink) {
     file { "${ssp::installroot}/${ssp::symlink_name}":
