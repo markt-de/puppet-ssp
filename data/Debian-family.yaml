@@ -1,0 +1,4 @@
+---
+ssp::group: 'www-data'
+ssp::user: 'www-data'
+ssp::smarty_package_name: smarty3

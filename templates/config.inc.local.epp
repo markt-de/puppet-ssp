@@ -8,7 +8,7 @@ $<%= $key %> = '<%= $value %>';
     <%- } elsif $value =~ Hash { -%>   
         <%- $value.each |$sub_key,$sub_value| { -%>
             <%- if $sub_value =~String { -%> 
-$<%= $key %>['<%= $sub_key %>'] = "<%= $sub_value %>; 
+$<%= $key %>['<%= $sub_key %>'] = <%= $sub_value %>;
             <%- } else { -%>    
 $<%= $key %>['<%= $sub_key %>'] = <%= $sub_value %>; 
             <%- } -%>      

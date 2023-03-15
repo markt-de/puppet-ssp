@@ -33,12 +33,14 @@ The following parameters are available in the `ssp` class:
 * [`edition`](#-ssp--edition)
 * [`group`](#-ssp--group)
 * [`installroot`](#-ssp--installroot)
+* [`manage_smarty`](#-ssp--manage_smarty)
 * [`manage_symlink`](#-ssp--manage_symlink)
-* [`symlink_name`](#-ssp--symlink_name)
 * [`mirror`](#-ssp--mirror)
+* [`smarty_path`](#-ssp--smarty_path)
+* [`smarty_package_name`](#-ssp--smarty_package_name)
+* [`symlink_name`](#-ssp--symlink_name)
 * [`user`](#-ssp--user)
 * [`version`](#-ssp--version)
-* [`smarty_path`](#-ssp--smarty_path)
 
 ##### <a name="-ssp--config"></a>`config`
 
@@ -90,17 +92,17 @@ Data type: `Stdlib::Compat::Absolute_path`
 Specifies the base directory where SSP should be installed. A new
 subdirectory for each version will be created.
 
+##### <a name="-ssp--manage_smarty"></a>`manage_smarty`
+
+Data type: `Boolean`
+
+You can enable/disable this funcion, if you already have php-smarty on your system
+
 ##### <a name="-ssp--manage_symlink"></a>`manage_symlink`
 
 Data type: `Boolean`
 
 You can enable/disable this symlink funcion if you want to
-
-##### <a name="-ssp--symlink_name"></a>`symlink_name`
-
-Data type: `String`
-
-Create a symlink that points to the current version.
 
 ##### <a name="-ssp--mirror"></a>`mirror`
 
@@ -108,6 +110,26 @@ Data type: `Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl]`
 
 Specifies the base URL where the distribution archive can be downloaded.
 Useful when providing a local mirror for the Pro edition.
+
+##### <a name="-ssp--smarty_path"></a>`smarty_path`
+
+Data type: `Optional[String]`
+
+Optional, if the smarty have to be in an other path than default.
+
+Default value: `undef`
+
+##### <a name="-ssp--smarty_package_name"></a>`smarty_package_name`
+
+Data type: `String`
+
+Package Name for local OS installation. Can ben changed in hiera OS Type.
+
+##### <a name="-ssp--symlink_name"></a>`symlink_name`
+
+Data type: `String`
+
+Create a symlink that points to the current version.
 
 ##### <a name="-ssp--user"></a>`user`
 
@@ -120,14 +142,6 @@ The name of the user that is used by the webserver process.
 Data type: `String`
 
 Specifies the version of SSP that should be installed.
-
-##### <a name="-ssp--smarty_path"></a>`smarty_path`
-
-Data type: `Optional[String]`
-
-Optional, if the smarty have to be in an other path than default.
-
-Default value: `undef`
 
 ### <a name="ssp--config"></a>`ssp::config`
 

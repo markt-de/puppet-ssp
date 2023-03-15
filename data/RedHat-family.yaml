@@ -1,0 +1,4 @@
+---
+ssp::group: 'apache'
+ssp::user: 'apache'
+ssp::smarty_package_name: php-Smarty

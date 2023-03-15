@@ -26,25 +26,30 @@
 #   Specifies the base directory where SSP should be installed. A new
 #   subdirectory for each version will be created.
 #
+# @param manage_smarty
+#   You can enable/disable this funcion, if you already have php-smarty on your system
+#
 # @param manage_symlink
 #   You can enable/disable this symlink funcion if you want to 
-#
-# @param symlink_name
-#   Create a symlink that points to the current version.
 #
 # @param mirror
 #   Specifies the base URL where the distribution archive can be downloaded.
 #   Useful when providing a local mirror for the Pro edition.
+#
+# @param smarty_path
+#   Optional, if the smarty have to be in an other path than default.
+#
+# @param smarty_package_name
+#   Package Name for local OS installation. Can ben changed in hiera OS Type.
+#
+# @param symlink_name
+#   Create a symlink that points to the current version.
 #
 # @param user
 #   The name of the user that is used by the webserver process.
 #
 # @param version
 #   Specifies the version of SSP that should be installed.
-# 
-# @param smarty_path
-#   Optional, if the smarty have to be in an other path than default.     
-#   
 #
 class ssp (
   Hash $config,
@@ -55,8 +60,10 @@ class ssp (
   Enum['oss', 'pro'] $edition,
   String $group,
   Stdlib::Compat::Absolute_path $installroot,
+  Boolean $manage_smarty,
   Boolean $manage_symlink,
   Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl] $mirror,
+  String $smarty_package_name,
   String $symlink_name,
   String $user,
   String $version,

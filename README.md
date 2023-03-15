@@ -22,7 +22,7 @@ It is flexible to change and enable default Self Service Password functions for 
 
 ## Requirements
 
-This module should work with all officially supported versions of Nextcloud.
+This module should work with all officially supported versions of Self Service Password.
 The focus of this module is Self Service Password, so you should ensure that all additional components are available and ready to use:
 
    * A webservice like Nginx or Apache [puppetlabs/apache](https://github.com/puppetlabs/puppetlabs-apache) is recommended.
@@ -38,15 +38,22 @@ One parameter is required to setup Self Service Password:
 
 ```puppet
 class { 'ssp':
-   version => '1.5.2'
+  version => '1.5.2'
 }
+```
+
+If you want to change the smarty version while installation process, you have to change the parameter in hiera OS-familys, like Debian-family.yaml
+
+```puppet
+class { 'ssp':
+  smarty_package_name => 'smarty3'
 ```
 
 If you want to change the default folder path of smarty, you have to change the one parameter in init.pp
 
 ```puppet
 class { 'ssp':
-   smarty_path => '/usr/share/php/Smarty/Smarty.class.php'
+  smarty_path => '/usr/share/php/Smarty/Smarty.class.php'
 }
 ```
 
