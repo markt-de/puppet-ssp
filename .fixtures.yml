@@ -3,4 +3,7 @@
 ---
 fixtures:
   forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+     archive: "puppet/archive"
+     php: "puppet/php"
+     stdlib: "puppetlabs/stdlib"
+     
