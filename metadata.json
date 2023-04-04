@@ -1,6 +1,6 @@
 {
   "name": "markt-ssp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "markt.de",
   "summary": "Setup Self Service Password HTTPS (SSP)",
   "license": "BSD-2-Clause",
