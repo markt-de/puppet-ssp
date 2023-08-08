@@ -1,6 +1,6 @@
 {
   "name": "markt-ssp",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "markt.de",
   "summary": "Setup Self Service Password HTTPS (SSP)",
   "license": "BSD-2-Clause",
@@ -21,14 +21,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "8",
-        "9"
-      ]
-    },
-    {
-      "operatingsystem": "RedHat",
-      "operatingsystemrelease": [
-        "8",
         "9"
       ]
     },
@@ -40,18 +32,24 @@
       ]
     },
     {
-      "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [
-        "18.04",
-        "20.04",
-        "22.04"        
-      ]
-    },
-    {
       "operatingsystem": "FreeBSD",
       "operatingsystemrelease": [
         "13"
-      ]      
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "20.04",
+        "22.04"
+      ]
     }
   ],
   "requirements": [
@@ -60,7 +58,7 @@
       "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
-  "pdk-version": "2.6.1",
-  "template-url": "pdk-default#2.7.1",
-  "template-ref": "tags/2.7.1-0-g9a16c87"
+  "pdk-version": "3.0.0",
+  "template-url": "pdk-default#3.0.0",
+  "template-ref": "tags/3.0.0-0-g056e50d"
 }
