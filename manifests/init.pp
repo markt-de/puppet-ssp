@@ -59,7 +59,7 @@ class ssp (
   String $config_template,
   Enum['oss', 'pro'] $edition,
   String $group,
-  Stdlib::Compat::Absolute_path $installroot,
+  Stdlib::Absolutepath $installroot,
   Boolean $manage_smarty,
   Boolean $manage_symlink,
   Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl] $mirror,
