@@ -16,7 +16,7 @@
 
 ## Description
 
-This is a puppet module to install and manage [Self Service Password](https://ltb-project.org/documentation/self-service-password.html).
+This is a Puppet module to install and manage [Self Service Password](https://ltb-project.org/documentation/self-service-password.html).
 It is flexible to change and enable default Self Service Password functions for your location.
 
 
@@ -25,9 +25,8 @@ It is flexible to change and enable default Self Service Password functions for 
 This module should work with all officially supported versions of Self Service Password.
 The focus of this module is Self Service Password, so you should ensure that all additional components are available and ready to use:
 
-   * A webservice like Nginx or Apache [puppetlabs/apache](https://github.com/puppetlabs/puppetlabs-apache) is recommended.
-   * A supported version of PHP (PHP-FPM is strongly recommended). The module is capable of providing a default installation of PHP, if the optional soft dependency        [puppet/php](https://github.com/voxpupuli/puppet-php) is available.
-
+* A webservice like Nginx or Apache, [puppetlabs/apache](https://github.com/puppetlabs/puppetlabs-apache) is recommended.
+* A supported version of PHP (PHP-FPM is strongly recommended), [puppet/php](https://github.com/voxpupuli/puppet-php) is recommended.
 
 ## Usage
 

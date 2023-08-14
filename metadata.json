@@ -2,7 +2,7 @@
   "name": "markt-ssp",
   "version": "1.2.0",
   "author": "markt.de",
-  "summary": "Setup Self Service Password HTTPS (SSP)",
+  "summary": "Setup Self Service Password (SSP) web interface",
   "license": "BSD-2-Clause",
   "source": "https://github.com/markt-de/puppet-ssp",
   "project_page": "https://github.com/markt-de/puppet-ssp",
